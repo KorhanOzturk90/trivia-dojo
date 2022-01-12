@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import random
+
 
 class Game:
     def __init__(self):
@@ -46,7 +48,7 @@ class Game:
         print("%s is the current player" % self.players[self.current_player])
         print("They have rolled a %s" % roll)
 
-        if self.in_penalty_box[self.current_player]:
+        if self.in_penalty_box[self.current_player]: # inside penalty box
             if roll % 2 != 0:
                 self.is_getting_out_of_penalty_box = True
 
@@ -56,21 +58,21 @@ class Game:
                     self.places[self.current_player] = self.places[self.current_player] - 12
 
                 print(self.players[self.current_player] + \
-                            '\'s new location is ' + \
-                            str(self.places[self.current_player]))
+                      '\'s new location is ' + \
+                      str(self.places[self.current_player]))
                 print("The category is %s" % self._current_category)
                 self._ask_question()
             else:
                 print("%s is not getting out of the penalty box" % self.players[self.current_player])
                 self.is_getting_out_of_penalty_box = False
-        else:
+        else:  # outside penalty box
             self.places[self.current_player] = self.places[self.current_player] + roll
             if self.places[self.current_player] > 11:
                 self.places[self.current_player] = self.places[self.current_player] - 12
 
             print(self.players[self.current_player] + \
-                        '\'s new location is ' + \
-                        str(self.places[self.current_player]))
+                  '\'s new location is ' + \
+                  str(self.places[self.current_player]))
             print("The category is %s" % self._current_category)
             self._ask_question()
 
@@ -99,9 +101,9 @@ class Game:
                 print('Answer was correct!!!!')
                 self.purses[self.current_player] += 1
                 print(self.players[self.current_player] + \
-                    ' now has ' + \
-                    str(self.purses[self.current_player]) + \
-                    ' Gold Coins.')
+                      ' now has ' + \
+                      str(self.purses[self.current_player]) + \
+                      ' Gold Coins.')
 
                 winner = self._did_player_win()
                 self.current_player += 1
@@ -117,12 +119,12 @@ class Game:
 
         else:
 
-            print("Answer was corrent!!!!")
+            print("Answer was correct!!!!")
             self.purses[self.current_player] += 1
             print(self.players[self.current_player] + \
-                ' now has ' + \
-                str(self.purses[self.current_player]) + \
-                ' Gold Coins.')
+                  ' now has ' + \
+                  str(self.purses[self.current_player]) + \
+                  ' Gold Coins.')
 
             winner = self._did_player_win()
             self.current_player += 1
@@ -153,7 +155,7 @@ if __name__ == '__main__':
     game.add('Chet')
     game.add('Pat')
     game.add('Sue')
-
+    random.seed(30)
     while True:
         game.roll(randrange(5) + 1)
 
