@@ -1,0 +1,1 @@
+Copied from [jbrains repository](https://github.com/jbrains/trivia)
